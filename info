@@ -62,6 +62,18 @@ CREATE TABLE wsT3(
     )ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 
+CREATE TABLE wsT4(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    DateRecorded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    DHTCelcius float,
+    DHTFarenheight float,
+    DHTHeatIndex float,
+    DHTHumidity float,
+    BaroCelcius float,
+    BaroPressure float
+   )ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;    
+
+
 
 
 DHTCelcius = db.column(db.String(10))
