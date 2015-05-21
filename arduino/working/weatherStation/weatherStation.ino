@@ -116,18 +116,27 @@ void loop() {
   dtostrf(baroSensorPress,4,2,bufBP);    
   }
   
-  
+  Serial.print("This is bufT:");  
   Serial.println(bufBT);
+  Serial.print("This is bufBP:");  
   Serial.println(bufBP);
 
 
+//char outBuf[64];
+char urlStr[200];
+//String urlStr = "POST /weather4/?DHTCelcius="+ bufF;// "&DHTFarenheight="+ bufF +"&DHTHeatIndex=" +bufHI+"&DHTHumidity="+bufH+"&BaroCelcius="+bufBT+"&BaroPressure="+bufBP+ "HTTP/1.1";
+
+sprintf(urlStr,"POST /weather4/?DHTCelcius=%s&DHTFarenheight=%s&DHTHeatIndex=%s&DHTHumidity=%s&BaroCelcius=%s&BaroPressure=%s HTTP/1.1",bufC,bufF,bufHI,bufH,bufBT,bufBP);
+
+//sprintf(outBuf,"POST %s HTTP/1.1",urlStr);
 
 //send to api
 
   if (client.connect(server, 5000)) {
     Serial.println("connected");
     // Make a HTTP request:
-    client.println("POST /weather2/?t=abc&h=def&ws=hij&wd=klm23344 HTTP/1.1");
+    //client.println("POST /weather4/?t=abc&h=def&ws=hij&wd=klm23344 HTTP/1.1");
+    client.println(urlStr);
     client.println("Host: 192.168.2.10");
     client.println("Content-Type: application/x-www-form-urlencoded");
     client.println("Content-Length:0");
@@ -144,7 +153,9 @@ void loop() {
      client.stop();
     }
 
-
-  delay(5000);
+  //delay 20 mins
+  delay(1200000);
+  //testing pace
+  //delay(5000);
 
 }

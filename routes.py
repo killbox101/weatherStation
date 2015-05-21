@@ -28,6 +28,17 @@ class Weather2(db.Model):
     windDirection = db.Column(db.String(10))
 
 
+class Weather4(db.Model):
+    __tablename__ = 'wsT4'
+    id = db.Column(db.Integer, primary_key = True)
+    DHTCelcius = db.Column(db.Float(3))
+    DHTFarenheight = db.Column(db.Float(3))
+    DHTHeatIndex = db.Column(db.Float(3))
+    DHTHumidity = db.Column(db.Float(3))
+    BaroCelcius = db.Column(db.Float(3))
+    BaroPressure = db.Column(db.Float(3))
+
+
 class Weather(db.Model):
     __tablename__ = 'wsT3'
     id = db.Column(db.Integer, primary_key = True)
@@ -149,6 +160,7 @@ def weather():
 def weather2():
     if request.method == 'GET':
         results = Weather2.query.limit(2).offset(0).all()
+        #results = Weather2.query.offset(0).all()
 
         json_results = []
 
@@ -161,6 +173,7 @@ def weather2():
             json_results.append(d)
 
         return jsonify(items=json_results)
+        #return 'i guess it works ?!?!'
 
     else: # must be a post
         t = request.args.get('t')
@@ -173,10 +186,46 @@ def weather2():
         print "This is windSpeed: %s" %wS
         print "This is windDirection: %s" %wD
         #result = Weather.query.add(temp=temp,humidity=humidity,windSpeed=windSpeed,windDirection=windDirection)
-        query = "INSERT INTO wsT (temp,humidity,windSpeed,windDirection) values (\'%s\',\'%s\',\'%s\',\'%s\')" %(t,h,wS,wD)
-        Weather2.query.from_statement(query).all()
+        query = 'INSERT INTO wsT (temp,humidity,windSpeed,windDirection) values (\'%s\',\'%s\',\'%s\',\'%s\')' %(t,h,wS,wD)
+        Weather2.query.from_statement(str(query)).all()
         Weather2.flush()
 
+        return "does this give 200 ?"
+
+@app.route('/weather4/', methods = ['GET', 'POST'])
+def weather4():
+    if request.method == 'GET':
+        results = Weather4.query.offset(0).all
+
+        json_results = []
+
+        for i in results:
+            d= {
+                    'DHTCelcius':result.DHTCelcius,
+                    'DHTFarenheight':result.DHTFarenheight,
+                    'DHTHeatIndex':result.DHTHeatIndex,
+                    'DHTHumidity':result.DHTHumidity,
+                    'BaroCelcius':result.BaroCelcius,
+                    'BaroPressure':result.BaroPressure
+            }
+            json_results.append(d)
+
+            return jsonify(items=json_results)
+
+    elif request.method == 'POST':
+        DHT_c = request.args.get('DHTCelcius')
+        DHT_f = request.args.get('DHTFarenheight')
+        DHT_hi = request.args.get('DHTHeatIndex')
+        DHT_h = request.args.get('DHTHumidity')
+        BARO_c = request.args.get('BaroCelcius')
+        BARO_p = request.args.get('BaroPressure')
+
+        query = 'INSERT INTO wsT4 (DHTCelcius,DHTFarenheight,DHTHeatIndex,DHTHumidity,BaroCelcius,BaroPressure) values (\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')' %(DHT_c,DHT_f,DHT_hi,DHT_h,BARO_c, BARO_p)
+        Weather4.query.from_statement(str(query)).all()
+        Weather4.flush()
+
+    else:
+        return 'INVALID METHOD'
 
 if __name__ == '__main__':
  #app.run(debug=True)
