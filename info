@@ -1,0 +1,115 @@
+-u wsUpdate
+-p password
+
+-db wsTemp
+
+
+
+create table WeatherStation (DTStamp datetime, DHTCelcius varchar(10), )
+
+
+
+
+CREATE TABLE WeatherStation (
+    DTStamp datetime,
+    DHTCelcius varchar(10),
+    DHTFarenheight varchar(10),
+    DHTHeatIndex varchar(10),
+    DHTHumidity varchar(10),
+    BaroCelcius varchar(10),
+    BaroPressure varchar(10),
+    WindSpeedAvg varchar(10),
+    WindSpeedMin varchar(10),
+    WindSpeedMax varchar(10),
+    WindDirection varchar(10)
+)
+
+
+
+CREATE TABLE wsT(
+	 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	 temp varchar(10),
+ 	 humidity varchar(10),
+	 windSpeed varchar(10),
+	 windDirection varchar(10)
+	)ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+
+CREATE TABLE wsT2(
+     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     DateRecorded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+     temp varchar(10),
+     humidity varchar(10),
+     windSpeed varchar(10),
+     windDirection varchar(10)
+    )ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+
+
+CREATE TABLE wsT3(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    DateRecorded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    DHTCelcius varchar(10),
+    DHTFarenheight varchar(10),
+    DHTHeatIndex varchar(10),
+    DHTHumidity varchar(10),
+    BaroCelcius varchar(10),
+    BaroPressure varchar(10),
+    WindSpeedAvg varchar(10),
+    WindSpeedMin varchar(10),
+    WindSpeedMax varchar(10),
+    WindDirection varchar(10)
+    )ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+
+
+
+DHTCelcius = db.column(db.String(10))
+DHTFarenheight= db.column(db.String(10))
+DHTHeatIndex = db.column(db.String(10))
+DHTHumidity = db.column(db.String(10))
+BaroCelcius = db.column(db.String(10))
+BaroPressure = db.column(db.String(10))
+WindSpeedAvg = db.column(db.String(10))
+WindSpeedMin = db.column(db.String(10))
+WindSpeedMax = db.column(db.String(10))
+WindDirection = db.column(db.String(10))
+
+
+DHTCelcius,DHTFarenheight,DHTHeatIndex,DHTHumidity,BaroCelcius,BaroPressure,WindSpeedAvg,WindSpeedMin,WindSpeedMax,WindDirection
+
+
+
+
+insert into wsT3 
+(DHTCelcius,DHTFarenheight,DHTHeatIndex,DHTHumidity,BaroCelcius,BaroPressure,WindSpeedAvg,WindSpeedMin,WindSpeedMax,WindDirection) 
+values ('DHTc','DHTf','DHThi','DHTh','BAROc','BAROp','WSavg','WSmin','WSmax','Wdir');
+
+
+insert into wsT (temp,humidity,windSpeed,windDirection) values ('z','x','v','n');
+insert into wsT (temp,humidity,windSpeed,windDirection) values('b','b','b','b');
+insert into wsT (temp,humidity,windSpeed,windDirection) values('c','c','c','c');
+insert into wsT (temp,humidity,windSpeed,windDirection) values('d','d','d','d');
+
+
+CREATE TABLE wsT(  Temp varchar(10),   Humidity varchar(10),  WindSpeed varchar(10),  WindDirection varchar(10)   ) 
+
+
+
+django 
+
+superuser 
+
+u pi
+p root
+
+
+curl -X POST 'http://127.0.0.1:5000/weather/?t=abc&h=def&ws=hij&wd=klm'
+
+
+
+
+
+curl -X POST 'http://127.0.0.1:5000/weather/?DHTc=1&DHTf=2&DHThi=3&DHTh=4&BAROc=5&BAROp=6&WSavg=7&WSmin=8&WSmax=9&WSdir=10'
+
+
