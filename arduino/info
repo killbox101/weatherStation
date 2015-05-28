@@ -62,18 +62,6 @@ CREATE TABLE wsT3(
     )ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 
-CREATE TABLE wsT4(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    DateRecorded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    DHTCelcius float,
-    DHTFarenheight float,
-    DHTHeatIndex float,
-    DHTHumidity float,
-    BaroCelcius float,
-    BaroPressure float
-   )ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;    
-
-
 
 
 DHTCelcius = db.column(db.String(10))
@@ -123,7 +111,5 @@ curl -X POST 'http://127.0.0.1:5000/weather/?t=abc&h=def&ws=hij&wd=klm'
 
 
 curl -X POST 'http://127.0.0.1:5000/weather/?DHTc=1&DHTf=2&DHThi=3&DHTh=4&BAROc=5&BAROp=6&WSavg=7&WSmin=8&WSmax=9&WSdir=10'
-
-curl -X POST 'HTTP://127.0.0.1:5000/weather4/?DHTCelcius=1&DHTFarenheight=2&DHTHeatIndex=3&DHTHumidity=4&BaroCelcius=5&BaroPressure=6'
 
 

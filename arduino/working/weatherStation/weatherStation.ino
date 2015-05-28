@@ -154,8 +154,10 @@ sprintf(urlStr,"POST /weather4/?DHTCelcius=%s&DHTFarenheight=%s&DHTHeatIndex=%s&
     }
 
   //delay 20 mins
-  delay(1200000);
+//  delay(1200000);
+//10 mins
+  delay(600000);
   //testing pace
-  //delay(5000);
+//  delay(5000);
 
 }

@@ -31,6 +31,7 @@ class Weather2(db.Model):
 class Weather4(db.Model):
     __tablename__ = 'wsT4'
     id = db.Column(db.Integer, primary_key = True)
+    DateRecorded = db.Column(db.TIMESTAMP)
     DHTCelcius = db.Column(db.Float(3))
     DHTFarenheight = db.Column(db.Float(3))
     DHTHeatIndex = db.Column(db.Float(3))
@@ -113,7 +114,8 @@ def sighting(sighting_id):
 def weather():
 
     if request.method == 'GET':
-        results = Weather.query.limit(2).offset(0).all()
+        #results = Weather.query.limit(2).offset(0).all()
+        results = Weather.query.all()
 
         json_results = []
 
@@ -159,8 +161,8 @@ def weather():
 @app.route('/weather2/', methods = ['GET', 'POST'])
 def weather2():
     if request.method == 'GET':
-        results = Weather2.query.limit(2).offset(0).all()
-        #results = Weather2.query.offset(0).all()
+        #results = Weather2.query.limit(2).offset(0).all()
+        results = Weather2.query.offset(0).all()
 
         json_results = []
 
@@ -194,13 +196,21 @@ def weather2():
 
 @app.route('/weather4/', methods = ['GET', 'POST'])
 def weather4():
+    #print 'we are about to hit GET'
     if request.method == 'GET':
-        results = Weather4.query.offset(0).all
+        #print 'we are about to search'
+        #results = Weather4.query.limit(10).offset(0).all()
+        #print 'we have searched'
+        #results = Weather4.query.all()
+        #query = "SELECT * FROM wsT4"
+        results = Weather4.query.all()
+        #results = Weather4.query.from_statement(query).all()
 
         json_results = []
 
-        for i in results:
+        for result in results:
             d= {
+                    'DateRecorded':result.DateRecorded,
                     'DHTCelcius':result.DHTCelcius,
                     'DHTFarenheight':result.DHTFarenheight,
                     'DHTHeatIndex':result.DHTHeatIndex,
@@ -209,6 +219,9 @@ def weather4():
                     'BaroPressure':result.BaroPressure
             }
             json_results.append(d)
+
+            print json_results
+
 
             return jsonify(items=json_results)
 
