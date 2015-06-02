@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
-
+#import datetime
+from datetime import datetime, date, timedelta
 app = Flask(__name__)
 db = SQLAlchemy(app)
 
@@ -38,6 +39,7 @@ class Weather4(db.Model):
     DHTHumidity = db.Column(db.Float(3))
     BaroCelcius = db.Column(db.Float(3))
     BaroPressure = db.Column(db.Float(3))
+
 
 
 class Weather(db.Model):
@@ -198,13 +200,9 @@ def weather2():
 def weather4():
     #print 'we are about to hit GET'
     if request.method == 'GET':
-        #print 'we are about to search'
-        #results = Weather4.query.limit(10).offset(0).all()
-        #print 'we have searched'
-        #results = Weather4.query.all()
-        #query = "SELECT * FROM wsT4"
+ 
         results = Weather4.query.all()
-        #results = Weather4.query.from_statement(query).all()
+ 
 
         json_results = []
 
@@ -216,14 +214,12 @@ def weather4():
                     'DHTHeatIndex':result.DHTHeatIndex,
                     'DHTHumidity':result.DHTHumidity,
                     'BaroCelcius':result.BaroCelcius,
-                    'BaroPressure':result.BaroPressure
-            }
+                    'BaroPressure':result.BaroPressure}
+
             json_results.append(d)
 
-            print json_results
 
-
-            return jsonify(items=json_results)
+        return jsonify(items=json_results)
 
     elif request.method == 'POST':
         DHT_c = request.args.get('DHTCelcius')
@@ -239,6 +235,76 @@ def weather4():
 
     else:
         return 'INVALID METHOD'
+
+
+@app.route('/weatherToday/', methods = ['GET'])
+def weatherToday():
+    currentDate = date.today()
+    print "This is our current: %s" %currentDate
+  
+
+    if request.method == 'GET':
+        #results = Weather4.query.all()
+        #results = Weather4.query.filter(Weather4.DateRecorded > '2015-06-01')
+        results = Weather4.query.filter(Weather4.DateRecorded > "%s" %currentDate) 
+        #Fri, 22 May 2015 04:34:47 GMT
+
+        json_results = []
+
+        for result in results:
+            d= {
+                    'DateRecorded':result.DateRecorded,
+                    'DHTCelcius':result.DHTCelcius,
+                    'DHTFarenheight':result.DHTFarenheight,
+                    'DHTHeatIndex':result.DHTHeatIndex,
+                    'DHTHumidity':result.DHTHumidity,
+                    'BaroCelcius':result.BaroCelcius,
+                    'BaroPressure':result.BaroPressure}
+
+            json_results.append(d)
+
+
+        return jsonify(items=json_results)
+
+    else:
+        return "INVALID METHOD"
+
+
+#app.route('/weatherMinusDays/<int:days1>', methods = ['GET'])
+@app.route('/wmd/<int:days1>', methods = ['GET'])
+def getWeather(days1):
+    print "days: %s" %days1
+    currentDate = date.today() 
+    print "current Date: %s" %currentDate
+    previousDate = currentDate - timedelta(days=days1)
+    print 'previousDate: %s' %previousDate
+
+
+    if request.method == 'GET':
+        results = Weather4.query.filter(Weather4.DateRecorded > "%s" %previousDate).order_by(Weather4.DateRecorded.asc())
+        #results = Weather4.query.filter(Weather4.DateRecorded > "%s" %previousDate).order_by(Weather4.DateRecorded.desc())
+
+        json_results = []
+
+        for result in results:
+            d= {
+                    'DateRecorded':result.DateRecorded,
+                    'DHTCelcius':result.DHTCelcius,
+                    'DHTFarenheight':result.DHTFarenheight,
+                    'DHTHeatIndex':result.DHTHeatIndex,
+                    'DHTHumidity':result.DHTHumidity,
+                    'BaroCelcius':result.BaroCelcius,
+                    'BaroPressure':result.BaroPressure}
+
+            json_results.append(d)
+
+
+        return jsonify(items=json_results)
+
+    else:
+        return "INVALID METHOD"
+
+
 
 if __name__ == '__main__':
  #app.run(debug=True)
