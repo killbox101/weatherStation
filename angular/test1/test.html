@@ -1,15 +1,62 @@
-<!doctype html>
-<html ng-app>
+<!--<!doctype html>
+<html >
 	<head>
 		<title>Hello AngularJS</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-    	<script src="hello.js"></script>
+    	<script src="test.js"></script>
 	</head>
 
-	<body>
-		<div ng-controller="Hello">
-			<p>The ID is {{greeting.id}}</p>
-			<p>The content is {{greeting.content}}</p>
+	<body ng-app="weatherStation" ng-controller="wsController as wsC">
+		<div ng-repeat="w in weather">
+			<p>The ID is {{w.BaroCelcius}}</p>
+			<p>The content is {{w.BaroPressure}}</p>
+			<p>The ID is {{w.DHTFarenheight}}</p>
+			<p>The content is {{w.DHTHeatIndex}}</p>
+			<p>The ID is {{w.DHTHumidity}}</p>
+			<p>The content is {{w.DHTHumidity}}</p>
+			<p>The content is {{w.DateRecorded}}</p>
 		</div>
 	</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="style.css">
+    
+        <script data-require="angular.js@*" data-semver="1.2.0-rc3-nonmin" src="http://code.angularjs.org/1.2.0-rc.3/angular.js"></script>
+    <script data-require="ng-table@*" data-semver="0.3.0" src="http://bazalt-cms.com/assets/ng-table/0.3.0/ng-table.js"></script>
+    <script src="test.js"></script>
+        <script src="test.js"></script>
+  </head>
+
+  <body ng-app="myApp" ng-controller="LabController">
+    
+    
+	   
+    
+
+	  
+	   <table ng-table="tableParams" class="table">
+      <tr ng-repeat="m in movies">
+          
+          <td data-title="'Status'">{{m.BaroCelcius}}</td>
+          <td></td>
+
+       <td data-title="'index'">{{$index}}</td>
+          <td></td>		  
+          <td data-title="'Date'">{{m.DHTFarenheight}}</td>
+          <td>
+		  </td>   
+          
+      </tr>
+      </table>
+	  
+	  
+	 
+  </body>
+
 </html>
