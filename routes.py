@@ -1,9 +1,12 @@
 from flask import Flask, request, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.cors import cross_origin
 #import datetime
 from datetime import datetime, date, timedelta
 app = Flask(__name__)
+#cors = CORS(app)
 db = SQLAlchemy(app)
+
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://wsUpdate:password@localhost/wsTemp'
 
@@ -238,6 +241,7 @@ def weather4():
 
 
 @app.route('/weatherToday/', methods = ['GET'])
+@cross_origin()
 def weatherToday():
     currentDate = date.today()
     print "This is our current: %s" %currentDate
