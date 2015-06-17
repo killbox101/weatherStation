@@ -1,32 +1,28 @@
 <!DOCTYPE html> 
 <html>
-
   <head>
   	<meta charset="UTF-8">
     <!--<link rel="stylesheet" href="style.css"> -->
-    
-    <!--<script data-require="angular.js@*" data-semver="1.2.0-rc3-nonmin" src="http://code.angularjs.org/1.2.0-rc.3/angular.js"></script> -->
-    <!--<script data-require="ng-table@*" data-semver="0.3.0" src="http://bazalt-cms.com/assets/ng-table/0.3.0/ng-table.js"></script> -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="test.js"></script>
 
   </head>
 
-  <body ng-app="myApp" ng-controller="LabController">  
-	   <table >
-	      <tr ng-repeat="m in movies">
-	          
-          <td data-title="'Status'">{{m.BaroCelcius}}</td>
-          <td></td>
-          
-          <td data-title="'Date'">{{m.DHTFarenheight}}</td>
-          <td></td>   
-	          
-	      </tr>
-      </table>
-	  
-	  
-	 
-  </body>
-
+    <body ng-app="myApp" ng-controller="weatherController">  
+	    <table border="black">
+	   		<tr> 	
+		   		<td> Date </td>
+		   		<td> DHTCelcius </td>
+		   		<td> BaroCelcuis </td>
+		   		<td> DHTHumidity</td>
+	   	 	</tr>
+	        <tr ng-repeat="m in wRecord">
+		      <td style='text-align:center;vertical-align:middle'>{{m.DateRecorded}}</td>
+		      <td style='text-align:center;vertical-align:middle'>{{m.DHTCelcius}}</td>
+		      <td style='text-align:center;vertical-align:middle'>{{m.BaroCelcius}}</td>
+		      <td style='text-align:center;vertical-align:middle'>{{m.DHTHumidity}}</td>
+	        </tr>
+        </table>
+    </body>
 </html>
