@@ -254,9 +254,10 @@ def weatherToday():
         #Fri, 22 May 2015 04:34:47 GMT
 
         json_results = []
-
+        i=0
         for result in results:
             d= {
+                    'x':i, 
                     'DateRecorded':result.DateRecorded,
                     'DHTCelcius':result.DHTCelcius,
                     'DHTFarenheight':result.DHTFarenheight,
@@ -266,7 +267,7 @@ def weatherToday():
                     'BaroPressure':result.BaroPressure}
 
             json_results.append(d)
-
+            i += 1
 
         return jsonify(items=json_results)
 
@@ -276,6 +277,7 @@ def weatherToday():
 
 #app.route('/weatherMinusDays/<int:days1>', methods = ['GET'])
 @app.route('/wmd/<int:days1>', methods = ['GET'])
+@cross_origin()
 def getWeather(days1):
     print "days: %s" %days1
     currentDate = date.today() 
@@ -289,9 +291,10 @@ def getWeather(days1):
         #results = Weather4.query.filter(Weather4.DateRecorded > "%s" %previousDate).order_by(Weather4.DateRecorded.desc())
 
         json_results = []
-
+        i=0
         for result in results:
             d= {
+                    'x': i,
                     'DateRecorded':result.DateRecorded,
                     'DHTCelcius':result.DHTCelcius,
                     'DHTFarenheight':result.DHTFarenheight,
@@ -301,7 +304,7 @@ def getWeather(days1):
                     'BaroPressure':result.BaroPressure}
 
             json_results.append(d)
-
+            i +=1
 
         return jsonify(items=json_results)
 
@@ -316,3 +319,5 @@ if __name__ == '__main__':
 
 
 # curl -X GET 127.0.0.1:5000/weather2/
+#select * from wsT4 where DHTCelcius = (select max(DHTCelcius));
+#select * from wsT4 where DHTCelcius = (select min(DHTCelcius));

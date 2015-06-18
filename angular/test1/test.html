@@ -5,24 +5,44 @@
     <!--<link rel="stylesheet" href="style.css"> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+    <script src="line-chart.min.js"></script>
     <script src="test.js"></script>
+    <link rel="stylesheet" href="test.css">
+    <!-- Latest compiled and minified CSS -->
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+
+	<!-- Optional theme -->
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">-->
+
+	<!-- Latest compiled and minified JavaScript -->
+	<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
 
   </head>
 
-    <body ng-app="myApp" ng-controller="weatherController">  
-	    <table border="black">
-	   		<tr> 	
-		   		<td> Date </td>
-		   		<td> DHTCelcius </td>
-		   		<td> BaroCelcuis </td>
-		   		<td> DHTHumidity</td>
-	   	 	</tr>
-	        <tr ng-repeat="m in wRecord">
-		      <td style='text-align:center;vertical-align:middle'>{{m.DateRecorded}}</td>
-		      <td style='text-align:center;vertical-align:middle'>{{m.DHTCelcius}}</td>
-		      <td style='text-align:center;vertical-align:middle'>{{m.BaroCelcius}}</td>
-		      <td style='text-align:center;vertical-align:middle'>{{m.DHTHumidity}}</td>
-	        </tr>
-        </table>
+    <body ng-app="myApp">
+    	<div class="div2" ng-controller="weatherController">
+        	<p>this better work </p>
+        	<linechart data="wRecord" options="options"></linechart> 
+        </div>
+
+    	<div class="div1" ng-controller="weatherController">
+		    <table border="black">
+		   		<tr> 
+		   			<td> Count </td>	
+			   		<td> Date </td>
+			   		<td> DHTCelcius </td>
+			   		<td> BaroCelcuis </td>
+			   		<td> DHTHumidity</td>
+		   	 	</tr>
+		        <tr ng-repeat="m in wRecord">
+		          <td style='text-align:center;vertical-align:middle'>{{m.x}}</td>
+			      <td style='text-align:center;vertical-align:middle'>{{m.DateRecorded}}</td>
+			      <td style='text-align:center;vertical-align:middle'>{{m.DHTCelcius}}</td>
+			      <td style='text-align:center;vertical-align:middle'>{{m.BaroCelcius}}</td>
+			      <td style='text-align:center;vertical-align:middle'>{{m.DHTHumidity}}</td>
+		        </tr>
+	        </table>
+        </div>
     </body>
 </html>
