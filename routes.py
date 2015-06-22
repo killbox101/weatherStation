@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.cors import cross_origin
+from sqlalchemy.sql import func
+
 #import datetime
 from datetime import datetime, date, timedelta
 app = Flask(__name__)
@@ -311,6 +313,53 @@ def getWeather(days1):
     else:
         return "INVALID METHOD"
 
+@app.route('/currentMinMaxTemp/', methods = ['GET'])
+@cross_origin()
+
+
+def getData():
+    currentDate = date.today()
+
+     #results = Weather4.query.filter(Weather4.DateRecorded > "%s" %currentDate) and filter(Weather4.DHTCelcius = max(Weather4.DHTCelcius))
+
+    if request.method == 'GET':
+        json_results = []
+        total = 0
+        i =0
+
+        minMaxTemp = Weather4.query.filter(Weather4.DateRecorded > "%s" %currentDate).order_by(Weather4.DHTCelcius.asc()) 
+        currentTemp = Weather4.query.filter(Weather4.DateRecorded > "%s" %currentDate).order_by(Weather4.DateRecorded.asc()) 
+        
+        for a in currentTemp:
+            total += a.DHTCelcius
+            i +=1
+
+        DHTaverage = total / i
+
+        if i > 1: 
+
+            print "This is our Min temp: %s"  %minMaxTemp[0].DHTCelcius
+            print "This is our Max temp: %s" %minMaxTemp[-1].DHTCelcius
+            print "This is our Current Temp: %s" %currentTemp[-1].DHTCelcius
+
+            json_results.append({
+                                'DHTCelciusMin':minMaxTemp[0].DHTCelcius,
+                                'DHTCelciusMax':minMaxTemp[-1].DHTCelcius,
+                                'DHTCelciusCurrent':currentTemp[0].DHTCelcius,
+                                'DHTCelciusAverage': DHTaverage
+                                })
+
+        else:
+            json_results.append({
+                                'DHTCelciusMin':'0',
+                                'DHTCelciusMax':'0',
+                                'DHTCelciusCurrent':'0',
+                                'DHTCelciusAverage':'0'
+                                })
+
+        return jsonify(items=json_results)
+    else:
+        return "shits broken yo"    
 
 
 if __name__ == '__main__':
@@ -321,3 +370,5 @@ if __name__ == '__main__':
 # curl -X GET 127.0.0.1:5000/weather2/
 #select * from wsT4 where DHTCelcius = (select max(DHTCelcius));
 #select * from wsT4 where DHTCelcius = (select min(DHTCelcius));
+
+#select * from wsT4 where DateRecorded = currentDate and DHTCelcius = (select max(DHTCelcius))
