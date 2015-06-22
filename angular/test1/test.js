@@ -195,3 +195,26 @@ myApp.controller('weatherControllerMinMaxCurrentTemp', function($scope,$http)
  	});
 
 });
+
+
+//myApp.controller('weatherControllerMinMaxCurrentTemp', function($scope,$http,$interval)
+//{
+// var c=0;
+// $interval(function(){
+// 	 $http({method:'GET',url:'http://192.168.2.10:5000/currentMinMaxTemp/'})
+// .success(function(data)
+// 	{
+// 		$scope.wRecord = data.items;
+// 	
+// 	})
+// 	.error(function(data)
+// 	{
+// 		$scope.wRecord = 'Shits broken yo!'
+// 	});
+//
+//  $alert("This message has refreshed"+c+"time");
+//
+//
+// },1000);
+//
+//});
