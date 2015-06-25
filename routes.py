@@ -297,6 +297,7 @@ def getWeather(days1):
         for result in results:
             d= {
                     'x': i,
+                    'id':result.id,
                     'DateRecorded':result.DateRecorded,
                     'DHTCelcius':result.DHTCelcius,
                     'DHTFarenheight':result.DHTFarenheight,
@@ -326,28 +327,52 @@ def getData():
         json_results = []
         total = 0
         i =0
-
+#
         minMaxTemp = Weather4.query.filter(Weather4.DateRecorded > "%s" %currentDate).order_by(Weather4.DHTCelcius.asc()) 
         currentTemp = Weather4.query.filter(Weather4.DateRecorded > "%s" %currentDate).order_by(Weather4.DateRecorded.asc()) 
-        
+#
+        #query = select min(DHTCelcius) as minTemp, max(DHTCelcius) as maxTemp, avg(DHTCelcius) as avgTemp from wst4 where DATE(DateRecorded) = CURDATE()
+        #
         for a in currentTemp:
             total += a.DHTCelcius
             i +=1
+        if total > 0:
+            DHTaverage = total / i
+        else:
+            DHTaverage = "NA"    
 
-        DHTaverage = total / i
+        #queryL = "SELECT max(DHTCelcius) AS maxTemp, min(DHTCelcius) AS minTemp, avg(DHTCelcius) AS avgTemp FROM wsT4 WHERE DATE(DateRecorded) = CURDATE()"
 
-        if i > 1: 
+        #query2 = 'select DHTCelcius from wsT4 where DATE(DateRecorded) = CURDATE() and id = select max(id) as id2 from wsT4'
+        #query2 = 'select DHTCelcius from wsT4 where id = (select max(id) as id2 from wsT4)'
+        #test = 'select * from wsT4'
+        #resultsMinMaxAvg = Weather4.query.from_statement(queryL).all()
 
-            print "This is our Min temp: %s"  %minMaxTemp[0].DHTCelcius
-            print "This is our Max temp: %s" %minMaxTemp[-1].DHTCelcius
-            print "This is our Current Temp: %s" %currentTemp[-1].DHTCelcius
+        #resultsMinMaxAvg = Weather4.query.from_statement(str(test)).all()
+        #resultsMinMaxAvg = Weather4.query(func.max(Weather4.DHTCelcius).label("maxTemp"), func.min(Weather4.DHTCelcius).label("minTemp"), func.avg(Weather4.DHTCelcius).label("avgTemp"))
+
+        #resultsCurrent = Weather4.query.from_statement(str(test))
+        #Weather4.flush()
+
+
+        if currentTemp: 
+
+            #print "This is our Min temp: %s"  %minMaxTemp[0].DHTCelcius
+            #print "This is our Max temp: %s" %minMaxTemp[-1].DHTCelcius
+            #print "This is our Current Temp: %s" %currentTemp[-1].DHTCelcius
 
             json_results.append({
                                 'DHTCelciusMin':minMaxTemp[0].DHTCelcius,
                                 'DHTCelciusMax':minMaxTemp[-1].DHTCelcius,
-                                'DHTCelciusCurrent':currentTemp[0].DHTCelcius,
+                                'DHTCelciusCurrent':currentTemp[-1].DHTCelcius,
                                 'DHTCelciusAverage': DHTaverage
                                 })
+            #json_results.append({
+            #                    'DHTCelciusMin': resultsMinMaxAvg.minTemp,
+            #                    'DHTCelciusMax': resultsMinMaxAvg.maxTemp,
+            #                    'DHTCelciusAvg': resultsMinMaxAvg.avgTemp
+                                #'DHTCelciusCurrent': resultsCurrent.DHTCelcius 
+            #                    })
 
         else:
             json_results.append({
