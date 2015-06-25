@@ -48,14 +48,14 @@
 
       <div class="col-sm-6">
 
-        <div class="chart-wrapper">
+        <div class="chart-wrapper"  ng-controller='weatherControllerPressure'>
           <div class="chart-title">
-            Temperature Today
+            Pressure Today
           </div>
-          <div id="grid-1-1" ng-controller='weatherController'>
+          <div id="grid-1-1" >
             <linechart data="wRecord" options="options"></linechart>
           </div>
-            <div class="chart-notes" ng-controller="weatherController">
+            <div class="chart-notes" >
                <p><a class="btn" data-toggle="collapse" data-target="#viewdetails">View details &raquo;</a></p>
                 <table class="collapse table table-bordered" id="viewdetails"  >
                   <tr> 
@@ -82,15 +82,15 @@
 
       </div>
 
-      <div class="col-sm-6">
+      <div class="col-sm-6" ng-controller='weatherControllerPressure2'>
         <div class="chart-wrapper">
           <div class="chart-title">
-            Temperature Last Two Days
+            Pressure Last Two Days
           </div>
-          <div id="grid-1-1" ng-controller='weatherController2'>
+          <div id="grid-1-1" >
             <linechart data="wRecord" options="options"></linechart>
           </div>
-          <div class="chart-notes" ng-controller='weatherController2'>
+          <div class="chart-notes">
             <p><a class="btn" data-toggle="collapse" data-target="#viewdetails2">View details &raquo;</a></p>
             <table class="collapse table table-bordered" id="viewdetails2" >
                   <tr> 
