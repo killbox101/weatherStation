@@ -158,6 +158,6 @@ sprintf(urlStr,"POST /weather4/?DHTCelcius=%s&DHTFarenheight=%s&DHTHeatIndex=%s&
 //10 mins
   delay(600000);
   //testing pace
-//  delay(5000);
+  //delay(5000);
 
 }
