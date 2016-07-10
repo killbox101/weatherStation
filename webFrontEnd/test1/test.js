@@ -13,9 +13,9 @@ myApp.controller('weatherController',function($scope, $http, $interval)
 	{
 		console.log("We have hit an interval!!!!!!!!!!!!");
 
-			$http({method:'GET',url:'http://192.168.2.10:5000/weatherToday/'})
-		//$http({method:'GET',url:'http://192.168.2.10:5000/wmd/27'})
-		//$http({method:'GET',url:'http://192.168.2.10:5000/wmd/2'})
+			$http({method:'GET',url:'http://192.168.0.110:5000/weatherToday/'})
+		//$http({method:'GET',url:'http://192.168.0.110:5000/wmd/27'})
+		//$http({method:'GET',url:'http://192.168.0.110:5000/wmd/2'})
 		.success(function(data)
 
 		{
@@ -86,7 +86,7 @@ myApp.controller('weatherController2',function($scope, $http)
 {
 
 
-	$http({method:'GET',url:'http://192.168.2.10:5000/wmd/2'})
+	$http({method:'GET',url:'http://192.168.0.110:5000/wmd/2'})
 	.success(function(data)
 
 	{
@@ -145,9 +145,9 @@ myApp.controller('weatherController2',function($scope, $http)
 myApp.controller('weatherControllerPressure',function($scope, $http) 
 {
 
-	$http({method:'GET',url:'http://192.168.2.10:5000/weatherToday/'})
-	//$http({method:'GET',url:'http://192.168.2.10:5000/wmd/27'})
-	//$http({method:'GET',url:'http://192.168.2.10:5000/wmd/2'})
+	$http({method:'GET',url:'http://192.168.0.110:5000/weatherToday/'})
+	//$http({method:'GET',url:'http://192.168.0.110:5000/wmd/27'})
+	//$http({method:'GET',url:'http://192.168.0.110:5000/wmd/2'})
 	.success(function(data)
 
 	{
@@ -197,7 +197,7 @@ myApp.controller('weatherControllerPressure2',function($scope, $http)
 {
 
 
-	$http({method:'GET',url:'http://192.168.2.10:5000/wmd/2'})
+	$http({method:'GET',url:'http://192.168.0.110:5000/wmd/2'})
 	.success(function(data)
 
 	{
@@ -248,7 +248,7 @@ myApp.controller('weatherControllerPressure2',function($scope, $http)
 
 myApp.controller('weatherControllerMinMaxCurrentTemp', function($scope,$http)
 {
- $http({method:'GET',url:'http://192.168.2.10:5000/currentMinMaxTemp/'})
+ $http({method:'GET',url:'http://192.168.0.110:5000/currentMinMaxTemp/'})
  .success(function(data)
  	{
  		$scope.wRecord = data.items;
@@ -266,7 +266,7 @@ myApp.controller('weatherControllerMinMaxCurrentTemp', function($scope,$http)
 //{
 // var c=0;
 // $interval(function(){
-// 	 $http({method:'GET',url:'http://192.168.2.10:5000/currentMinMaxTemp/'})
+// 	 $http({method:'GET',url:'http://192.168.0.110:5000/currentMinMaxTemp/'})
 // .success(function(data)
 // 	{
 // 		$scope.wRecord = data.items;

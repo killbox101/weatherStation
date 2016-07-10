@@ -19,13 +19,44 @@ p root
 -p password
 
 -db wsTemp
+-table wsT4
 
 
 
 --test post
 
-curl -X POST 'http://127.0.0.1:5000/weather/?t=abc&h=def&ws=hij&wd=klm'
+#curl -X POST 'http://127.0.0.1:5000/weather/?t=abc&h=def&ws=hij&wd=klm' --old api
 
-curl -X POST 'http://127.0.0.1:5000/weather/?DHTc=1&DHTf=2&DHThi=3&DHTh=4&BAROc=5&BAROp=6&WSavg=7&WSmin=8&WSmax=9&WSdir=10'
+#curl -X POST 'http://127.0.0.1:5000/weather/?DHTc=1&DHTf=2&DHThi=3&DHTh=4&BAROc=5&BAROp=6&WSavg=7&WSmin=8&WSmax=9&WSdir=10' --old api
+
+curl -X POST http://127.0.0.1:5000/weather4/?DHTCelcius=1&DHTFarenheight=2&DHTHeatIndex=3&DHTHumidity=4&BaroCelcius=4&BaroPressure=6
 
 
+--running instructions
+
+1. 
+    check static IP
+    sudo nano etc/network/interfaces
+
+2. 
+    check config of arduino (update IPs)
+
+3. 
+    kick off the api
+
+    cd sightings
+    sorce /venv/bin/activate
+
+    --check routes.py is running on eth0 and not local interface
+    python routes.py
+
+
+4.
+    check the website.js files
+    if the IP has been changed the website will be pointing to the old one 
+
+    var/www/
+
+    check the conf file
+
+    
