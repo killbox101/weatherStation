@@ -1,0 +1,31 @@
+
+
+old creds, check local folder for new ones.
+
+--not  using django anymore
+
+django 
+superuser 
+
+--rpi rdp info 
+
+u pi
+p root
+
+
+--sql info 
+
+-u wsUpdate
+-p password
+
+-db wsTemp
+
+
+
+--test post
+
+curl -X POST 'http://127.0.0.1:5000/weather/?t=abc&h=def&ws=hij&wd=klm'
+
+curl -X POST 'http://127.0.0.1:5000/weather/?DHTc=1&DHTf=2&DHThi=3&DHTh=4&BAROc=5&BAROp=6&WSavg=7&WSmin=8&WSmax=9&WSdir=10'
+
+

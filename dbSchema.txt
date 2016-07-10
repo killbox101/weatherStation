@@ -1,12 +1,5 @@
--u wsUpdate
--p password
-
--db wsTemp
-
-
-
-create table WeatherStation (DTStamp datetime, DHTCelcius varchar(10), )
-
+--db schema old and new schema
+create table WeatherStation (DTStamp datetime, DHTCelcius varchar(10), 
 
 
 
@@ -93,23 +86,4 @@ insert into wsT (temp,humidity,windSpeed,windDirection) values('d','d','d','d');
 
 
 CREATE TABLE wsT(  Temp varchar(10),   Humidity varchar(10),  WindSpeed varchar(10),  WindDirection varchar(10)   ) 
-
-
-
-django 
-
-superuser 
-
-u pi
-p root
-
-
-curl -X POST 'http://127.0.0.1:5000/weather/?t=abc&h=def&ws=hij&wd=klm'
-
-
-
-
-
-curl -X POST 'http://127.0.0.1:5000/weather/?DHTc=1&DHTf=2&DHThi=3&DHTh=4&BAROc=5&BAROp=6&WSavg=7&WSmin=8&WSmax=9&WSdir=10'
-
 

@@ -13,8 +13,8 @@ const int hallPin = 12;
 int hallState = 0; 
 
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
-IPAddress server(192,168,2,10);  // numeric IP for Google (no DNS)
-IPAddress ip(192,168,2,110);
+IPAddress server(192,168,0,110);  // numeric IP for Google (no DNS)
+IPAddress ip(192,168,0,111);
 EthernetClient client;
 
 
@@ -137,7 +137,7 @@ sprintf(urlStr,"POST /weather4/?DHTCelcius=%s&DHTFarenheight=%s&DHTHeatIndex=%s&
     // Make a HTTP request:
     //client.println("POST /weather4/?t=abc&h=def&ws=hij&wd=klm23344 HTTP/1.1");
     client.println(urlStr);
-    client.println("Host: 192.168.2.10");
+    client.println("Host: 192.168.0.110");
     client.println("Content-Type: application/x-www-form-urlencoded");
     client.println("Content-Length:0");
     client.println("Connection: close");
