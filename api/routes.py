@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
-from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.cors import cross_origin
+from flask_sqlalchemy import SQLAlchemy
+from flask_cors import cross_origin
 from sqlalchemy.sql import func
 
 #import datetime
