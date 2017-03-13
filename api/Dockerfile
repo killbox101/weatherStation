@@ -1,15 +1,22 @@
-FROM python:2-onbuild
+#FROM armhf/python
+FROM hypriot/rpi-python
 
 # Add in the routes.py file
 
 ADD routes.py /
-
+ADD requirements.txt /
 # Install required libraries
 
-RUN pip install -r requirements.txt
+
+#RUN cd ../
+#RUN ls
+RUN apt-get -qq  update
+#RUN pip list
+RUN pip install -r ../requirements.txt
 
 #RUN pip install flask
 #RUN pip install sqlalchemy
+
 
 #Open up 9000
 
@@ -17,4 +24,4 @@ EXPOSE 5000
 
 #Execute
 
-CMD [ "python", "./routes.py" ]
+CMD ["python", "../routes.py" ]
