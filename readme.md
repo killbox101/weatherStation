@@ -87,3 +87,9 @@ grant all privileges on wsTemp.* to wsUpdate@localhost identified by 'password';
   
 INSERT INTO wsT4 (DHTCelcius,DHTFarenheight,DHTHeatIndex,DHTHumidity,BaroCelcius,BaroPressure) values ('1','1','1','1','1','1');
 INSERT INTO wsT4 (DHTCelcius,DHTFarenheight,DHTHeatIndex,DHTHumidity,BaroCelcius,BaroPressure) values ('2','2','2','2','2','2');
+
+
+#to build the image
+
+docker build -t [image_you_want_to_name] .
+
