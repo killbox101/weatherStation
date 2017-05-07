@@ -3,6 +3,8 @@
 docker build -t my-apache2 .
 docker run -p 8080:80 -dit --name my-running-app my-apache2
 
+
+
 #To Run webserver on ARM
 
 cd to web folder
@@ -15,10 +17,6 @@ docker run -p 8080:80 -d mysite
 #until commands
 
 docker exec -i -t b01b68bef8e6 /bin/bash
-
-
-
-
 
 
 
@@ -84,6 +82,8 @@ grant all privileges on wsTemp.* to wsUpdate@localhost identified by 'password';
 
   ------>
 
+
+#test data for DB
   
 INSERT INTO wsT4 (DHTCelcius,DHTFarenheight,DHTHeatIndex,DHTHumidity,BaroCelcius,BaroPressure) values ('1','1','1','1','1','1');
 INSERT INTO wsT4 (DHTCelcius,DHTFarenheight,DHTHeatIndex,DHTHumidity,BaroCelcius,BaroPressure) values ('2','2','2','2','2','2');
@@ -97,6 +97,7 @@ docker rmi weather_station_api
 
 #to build the image
 
-docker build -t [image_you_want_to_name] .
+docker build -t [image_you_want_to_name] .   <-- make sure you are in the current dir of the dockerfile
+
 
 
