@@ -10,7 +10,7 @@ app = Flask(__name__)
 db = SQLAlchemy(app)
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://wsUpdate:password@localhost/wsTemp'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:mypassword@192.168.0.110/wsTemp'
 
 class Sighting(db.Model):
   __tablename__ = 'sightings'

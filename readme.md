@@ -89,7 +89,14 @@ INSERT INTO wsT4 (DHTCelcius,DHTFarenheight,DHTHeatIndex,DHTHumidity,BaroCelcius
 INSERT INTO wsT4 (DHTCelcius,DHTFarenheight,DHTHeatIndex,DHTHumidity,BaroCelcius,BaroPressure) values ('2','2','2','2','2','2');
 
 
+
 #removing old containers and their associated images
 
 docker rm -f ws_api
 docker rmi weather_station_api
+
+#to build the image
+
+docker build -t [image_you_want_to_name] .
+
+
