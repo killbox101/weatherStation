@@ -101,3 +101,4 @@ docker build -t [image_you_want_to_name] .   <-- make sure you are in the curren
 
 
 
+sudo ip route add default via IP.address.OfYour.Router
