@@ -87,3 +87,9 @@ grant all privileges on wsTemp.* to wsUpdate@localhost identified by 'password';
   
 INSERT INTO wsT4 (DHTCelcius,DHTFarenheight,DHTHeatIndex,DHTHumidity,BaroCelcius,BaroPressure) values ('1','1','1','1','1','1');
 INSERT INTO wsT4 (DHTCelcius,DHTFarenheight,DHTHeatIndex,DHTHumidity,BaroCelcius,BaroPressure) values ('2','2','2','2','2','2');
+
+
+#removing old containers and their associated images
+
+docker rm -f ws_api
+docker rmi weather_station_api
