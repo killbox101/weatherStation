@@ -11,6 +11,7 @@ ADD requirements.txt /
 #RUN cd ../
 #RUN ls
 RUN apt-get -qq  update
+RUN apt-get -y install python-mysqldb
 #RUN pip list
 RUN pip install -r ../requirements.txt
 
